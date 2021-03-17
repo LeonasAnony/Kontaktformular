@@ -46,3 +46,11 @@ Bild von der Datenbank
 - Server Public Key
 - Client Secret Key
 - wird nur zur entschlüsselung im Fall einer Infektion genutzt
+
+### Mysql
+Running everyday:
+`DELETE FROM data WHERE Abreise <= DATE_SUB(NOW(),INTERVAL 30 DAY)`
+
+## Kontakt
+Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
+Danke!
