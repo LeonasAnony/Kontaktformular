@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Courier;
+  position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+  -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background: #232944;
+	background-repeat:no-repeat;
+	background: -webkit-linear-gradient(to bottom right, #023801, #02a000) fixed;
+	background: -moz-linear-gradient(to bottom right, #023801, #02a000) fixed;
+	background: -ms-linear-gradient(to bottom right, #023801, #02a000) fixed;
+	background: -o-linear-gradient(to bottom right, #023801, #02a000) fixed;
+	background: linear-gradient(to bottom right, #023801, #02a000) fixed;
+  line-height: 1.2;
+}
+.box {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 0;
+  padding-right: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #131313b0;
+  text-align: center;
+  border-radius: 12px;
+}
+.box h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.box p, p5, p6, p7, p8, p9, p10 {
+  color: red;
+  display: none;
+}
+.box p1 {
+  color: #04c602;
+  display: none;
+}
+.box a {
+  color: #04c602;
+  text-decoration: underline;
+  font-weight: normal;
+}
+.box p2, p3, p4 {
+  color: white;
+}
+.box input[type = "text"], .box input[type = "email"], .box input[type = "tel"], .box input[type = "date"] {
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #02a000;
+  padding: 14px 10px;
+  width: 13rem;
+  outline: none;
+  color: white;
+  border-radius: 25rem;
+  transition: 0.5s;
+}
+.box input[type = "text"]:focus, .box input[type = "email"]:focus, .box input[type = "tel"]:focus, .box input[type = "date"]:focus {
+  width: 15rem;
+  border-color: #04c602;
+}
+.box input[type = "submit"] {
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #04c602;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 25rem;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.box input[type = "submit"]:hover {
+  background: #04c602;
+}
