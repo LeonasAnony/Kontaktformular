@@ -13,25 +13,23 @@ $pdo = new PDO('mysql:host=localhost:3306;dbname=********', '********', strval(f
 if (isset($_GET['data'])) {
   $code = $_POST['code'];
 
-  // Check if Code is valid
+  // Kontrollieren ob der Code 6 Zeichen lang ist
   if (strlen($code) != 6) {
     // echo 'Bitte einen richtigen Code angeben<br>';
     echo "<style>.box p {display: inline;}</style>";
     $error = true;
   }
 
-  // Insert into DB
+  // Schauen ob Code existiert oder schon ausgetragen wurde
   if (!$error) {
     $statement = $pdo->prepare("SELECT Dauer FROM data WHERE code = :code");
     $result = $statement->execute(array('code' => $code));
     $exists = $statement->fetch();
     if ($exists == false) {
-      // echo 'Code nicht in der DB<br>';
       echo "<style>.box p5 {display: inline;}</style>";
       $error = true;
     }
     if ($exists["Dauer"] === "0") {
-      // echo 'Code schon ausgetragen<br>';
       echo "<style>.box p6 {display: inline;}</style>";
       $error = true;
     }
@@ -39,14 +37,13 @@ if (isset($_GET['data'])) {
 
   // Dauer = 0
   // Abreise = date
+  // Einträge in die Datenbank schreiben
   if (!$error) {
     $statement = $pdo->prepare("UPDATE data SET Dauer = :dauer, Abreise = :abreise WHERE code = :code");
     $done = $statement->execute(array('dauer' => 0, 'abreise' => date("Y-m-d H:i:s"), 'code' => $code));
     if ($done == 1) {
-      // echo 'eintrag geändert<br>';
       echo "<style>.box p1 {display: inline;}</style>";
     } else {
-      // echo 'Something went wrong<br>';
       echo "<style>.box p7 {display: inline;}</style>";
     }
   }
