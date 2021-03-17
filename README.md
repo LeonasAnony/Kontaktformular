@@ -9,6 +9,7 @@ Fragt ab:
 - Email oder Telefonnummer
 - Anreise datum
 - Abreise datum oder "Dauergast"
+
 Gibt zurück: Bei Auswahl von "Dauergast" einen 6 stelligen Code in logout.php genutzt werden kann
 
 
