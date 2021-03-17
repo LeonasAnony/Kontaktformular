@@ -18,17 +18,15 @@ if (isset($_GET['data'])) {
   $abreise = $_POST['abdate'];
   $dauer = $_POST['dauer'];
 
-  // Check if Name was submited
+  // Wurde ein Name angegeben
   if (strlen($name) == 0) {
-    // echo 'Bitte einen Nachnamen angeben<br>';
     echo "<style>.box p7 {display: inline;}</style>";
     $error = true;
   }
-  // Check if Email or Tel or both was submited
+  // Wurde eine Email oder eine Telefonnummer angegeben
   if ($email != null && $tel == null) {
     $emtel = 0;
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // echo "Bitte eine gültige E-Mail-Adresse eingeben<br>";
         echo "<style>.box p5 {display: inline;}</style>";
         $error = true;
     }
@@ -37,7 +35,6 @@ if (isset($_GET['data'])) {
   } elseif ($tel != null && $email != null) {
     $emtel = 2;
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // echo "Bitte eine gültige E-Mail-Adresse eingeben<br>";
         echo "<style>.box p5 {display: inline;}</style>";
         $error = true;
     }
@@ -45,15 +42,13 @@ if (isset($_GET['data'])) {
     echo "<style>.box p {display: inline;}</style>";
     $error = true;
   }
-  // Check if Andate was submited
+  // Wurde ein Anreise Datum angegeben
   if ($anreise == null) {
-    // echo 'Bitte ein Anreise Datum angeben<br>';
     echo "<style>.box p8 {display: inline;}</style>";
     $error = true;
   }
-  // Check if Abdate or dauer was submited
+  // Wurde ein Abreise Datum oder Dauer angegeben/ abgehakt
   if ($abreise == null && $dauer == null) {
-    // echo 'Bitte ein Abreise Datum angeben oder Dauergast aktivieren<br>';
     echo "<style>.box p9 {display: inline;}</style>";
     $error = true;
   }
@@ -62,21 +57,21 @@ if (isset($_GET['data'])) {
     $abreise = NULL;
   }
 
-  // Function to load the keys
+  // Funktion zum laden von Schlüsseln
   function loadKeys() {
     $ServerSecKey = base64_decode(file_get_contents("/var/www/html/keys/SSKey"));
     $ClientPubKey = base64_decode(file_get_contents("/var/www/html/keys/CPKey"));
     return $ServerSecKey . $ClientPubKey;
   }
 
-  // Function to unload the keys
+  // Funktion zum entladen von Schlüsseln
   function unloadKeys()
   {
     unset($ServerSecKey);
     unset($ClientPubKey);
   }
 
-  // Function to encrypt the data
+  // Funktion zum Daten Verschlüsseln
   function encryptdata($data) {
     if (is_string($data) == true) {
       $encKey = loadKeys();
@@ -89,7 +84,7 @@ if (isset($_GET['data'])) {
     }
   }
 
-  // Function to generate random code
+  // Funktion um zufälligen String für "Code" zu generieren
   function generateRandomString($length = 6) {
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -100,7 +95,7 @@ if (isset($_GET['data'])) {
     return $randomString;
   }
 
-  // Alternativen Wert für Abreise definieren
+  // Wert für Dauer/ Code definieren
   if ($dauer == "on") {
     $code = generateRandomString();
     $dauer = 1;
@@ -109,7 +104,7 @@ if (isset($_GET['data'])) {
     $code = NULL;
   }
 
-  // Encrypt Data
+  // Daten Verschlüsseln
   if (!$error) {
     $encname = encryptdata($name);
     if ($emtel == 0) {
@@ -125,7 +120,7 @@ if (isset($_GET['data'])) {
     }
   }
 
-  // Insert into DB
+  // In die Datenbank einfügen
   if (!$error) {
     if ($emtel == 0) {
       $statement = $pdo->prepare("INSERT INTO data (Nachname, Email, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :anrei, :abrei, :dauer, :code)");
@@ -141,10 +136,8 @@ if (isset($_GET['data'])) {
       $error = true;
     }
     if($result) {
-      //echo 'Deine Daten wurden erfolgreich verschlüsselt gespeichert';
       echo "<style>.box p1 {display: inline;}</style>";
     } else {
-      //echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
       echo "<style>.box p10 {display: inline;}</style>";
       echo $statement->errorInfo()[2];
     }
