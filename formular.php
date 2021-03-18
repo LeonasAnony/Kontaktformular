@@ -15,7 +15,7 @@ $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw)
 if (isset($_GET['data'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
-  $tel = strval($_POST['tel']);
+  $tel = $_POST['tel'];
   $anreise = $_POST['andate'];
   $abreise = $_POST['abdate'];
   $dauer = $_POST['dauer'];
