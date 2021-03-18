@@ -3,21 +3,21 @@ body {
   padding: 0;
   font-family: Courier;
   position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	min-height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
   -webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background: #232944;
-	background-repeat:no-repeat;
-	background: -webkit-linear-gradient(to bottom right, #023801, #02a000) fixed;
-	background: -moz-linear-gradient(to bottom right, #023801, #02a000) fixed;
-	background: -ms-linear-gradient(to bottom right, #023801, #02a000) fixed;
-	background: -o-linear-gradient(to bottom right, #023801, #02a000) fixed;
-	background: linear-gradient(to bottom right, #023801, #02a000) fixed;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #232944;
+  background-repeat:no-repeat;
+  background: -webkit-linear-gradient(to bottom right, #023801, #02a000) fixed;
+  background: -moz-linear-gradient(to bottom right, #023801, #02a000) fixed;
+  background: -ms-linear-gradient(to bottom right, #023801, #02a000) fixed;
+  background: -o-linear-gradient(to bottom right, #023801, #02a000) fixed;
+  background: linear-gradient(to bottom right, #023801, #02a000) fixed;
   line-height: 1.2;
   scroll-behavior: smooth;
   overflow: auto;
@@ -43,7 +43,7 @@ body {
   font-weight: 500;
   margin-bottom: 0px;
 }
-.box p, p5, p6, p7, p8, p9, p10 {
+.box p, p5, p6, p7, p8, p9, p10, p11{
   color: #FFF500;
   display: none;
 }
