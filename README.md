@@ -54,3 +54,30 @@ Running everyday:
 ## Kontakt
 Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
 Danke!
+
+## Setup
+### Database
+#### create db and user
+`CREATE DATABASE kontaktverfolgung;`
+`CREATE USER 'kontaktUser'@'localhost' IDENTIFIED BY 'some_pass';`
+`GRANT ALL PRIVILEGES ON kontaktverfolgung.* TO 'kontaktUser'@'localhost';`
+`FLUSH PRIVILEGES;`
+
+#### create table
+`USE kontaktverfolgung;`
+`CREATE TABLE kontaktverfolgung_tbl(
+    id INT NOT NULL AUTO_INCREMENT,
+    Nachname VARCHAR(250),
+    Email VARCHAR(250),
+    Telefonnummer VARCHAR(250),
+    Anreise DATE,
+    Abreise DATE,
+    Dauer INT,
+    Code VARCHAR(8),
+    PRIMARY KEY ( id )
+    );`
+
+###
+generate two key pairs by calling gen_key.php once.
+But take care you need to save the private key!! It will be shown just once.
+Store it at a save place.
