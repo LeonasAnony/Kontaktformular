@@ -58,14 +58,17 @@ Danke!
 ## Setup
 ### Database
 #### create db and user
-`CREATE DATABASE kontaktverfolgung;`
-`CREATE USER 'kontaktUser'@'localhost' IDENTIFIED BY 'some_pass';`
-`GRANT ALL PRIVILEGES ON kontaktverfolgung.* TO 'kontaktUser'@'localhost';`
-`FLUSH PRIVILEGES;`
+```
+CREATE DATABASE kontaktverfolgung;
+CREATE USER 'kontaktUser'@'localhost' IDENTIFIED BY 'some_pass';
+GRANT ALL PRIVILEGES ON kontaktverfolgung.* TO 'kontaktUser'@'localhost';
+FLUSH PRIVILEGES;
+```
 
 #### create table
-`USE kontaktverfolgung;`
-`CREATE TABLE kontaktverfolgung_tbl(
+```
+USE kontaktverfolgung;
+CREATE TABLE kontaktverfolgung_tbl(
     id INT NOT NULL AUTO_INCREMENT,
     Nachname VARCHAR(250),
     Email VARCHAR(250),
@@ -75,9 +78,11 @@ Danke!
     Dauer INT,
     Code VARCHAR(8),
     PRIMARY KEY ( id )
-    );`
+    );
+```
 
-###
-generate two key pairs by calling gen_key.php once.
-But take care you need to save the private key!! It will be shown just once.
-Store it at a save place.
+### generate Keys
+Du musst zwei Keypare generieren. Das funktioniert grundlegend wie Email per PGP.
+Dazu musst du einmal die `gen_key.php` aufrufen. Dabei wird dir dein private Key
+angezeigt. Den musst du unbedint aufschreiben. Ohne den kanns du die Daten
+aus der Datenbank nicht mehr entschluesseln.
