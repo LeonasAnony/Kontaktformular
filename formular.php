@@ -44,10 +44,6 @@ if (isset($_GET['data'])) {
     echo "<style>.box p9 {display: inline;}</style>";
     $error = true;
   }
-  // Alternativen Wert für Abreise definieren
-  if ($abreise == null) {
-    $abreise = NULL;
-  }
 
   // Funktion zum laden von Schlüsseln
   function loadKeys() {
