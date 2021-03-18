@@ -5,5 +5,5 @@ $port = '3306';
 $dbname = 'kontaktverfolgung';
 $tablename = 'kontaktverfolgung_tbl';
 $dbuser = 'kontaktUser';
-$dbpw = 'verysafepassword!!!!';
+$dbpw = 'asdf';
 ?>

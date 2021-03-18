@@ -4,100 +4,80 @@
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <title>Klimacamp Coronaformular</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resource/style.css">
   </head>
 <?php
 $error = false;
 
-include("db.php");
+include("src/db.php");
+include("src/crypto_helper.php");
+include("src/helper.php");
+
+
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if (isset($_GET['data'])) {
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $tel = $_POST['tel'];
-  $anreise = $_POST['andate'];
-  $abreise = $_POST['abdate'];
-  $dauer = $_POST['dauer'];
+  $name = trim($_POST['name']);
+  $email = trim($_POST['email']);
+  $tel = trim($_POST['tel']);
+  $anreise = trim($_POST['andate']);
+  $abreise = trim($_POST['abdate']);
+  $dauer = trim($_POST['dauer']);
 
-  // Wurde ein Name angegeben
-  if (empty(trim($name))) {
+  // Error wenn kein Name angegeben wurde
+  if ($name == null) {
     echo "<style>.box p7 {display: inline;}</style>";
     $error = true;
   }
-  // Wurde eine Email oder eine Telefonnummer angegeben
-  if (trim($email) != null) {
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<style>.box p5 {display: inline;}</style>";
-        $error = true;
-    }
-  }
-  if ((trim($tel) == null && trim($email) == null)) {
+
+  // Error wenn keine Email adresse oder Telefonnummer angegeben
+  if ($tel == null && $email == null) {
     echo "<style>.box p {display: inline;}</style>";
     $error = true;
   }
-  // Wurde ein Anreise Datum angegeben
-  if ($anreise == null) {
+
+  // Error wenn eine Email angeben ist, aber keine valide
+  if ($email != null && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<style>.box p5 {display: inline;}</style>";
+    $error = true;
+  }
+
+  // Error wenn eine Telefonnummer angeben ist, aber keine valide
+  if ($tel != null && !checkIfIsAValidPhonenumber($tel)) {
+    echo "<style>.box p6 {display: inline;}</style>";
+    $error = true;
+  }
+
+  // Error wenn kein Anreise Datum angegeben wurde oder das Datum nicht valide ist
+  if ($anreise == null || !checkIfIsAValidDate($anreise)) {
     echo "<style>.box p8 {display: inline;}</style>";
     $error = true;
   }
-  // Wurde ein Abreise Datum oder Dauer angegeben/ abgehakt
-  if ($abreise == null && $dauer == null) {
+
+  // Error wenn kein Abreise Datum oder Dauer angegeben/ abgehakt
+  if (($abreise == null && $dauer == null) ||  !checkIfIsAValidDate($abreise)) {
     echo "<style>.box p9 {display: inline;}</style>";
     $error = true;
   }
 
-  // Funktion zum laden von Schlüsseln
-  function loadKeys() {
-    $ServerSecKey = base64_decode(file_get_contents("keys/server.priv"));
-    $ClientPubKey = base64_decode(file_get_contents("keys/user.pub"));
-    return $ServerSecKey . $ClientPubKey;
-  }
-
-  // Funktion zum entladen von Schlüsseln
-  function unloadKeys()
-  {
-    unset($ServerSecKey);
-    unset($ClientPubKey);
-  }
-
-  // Funktion zum Daten Verschlüsseln
-  function encryptdata($data) {
-    if (is_string($data) == true) {
-      $encKey = loadKeys();
-      unloadKeys();
-      $Sernonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-      return base64_encode($Sernonce . sodium_crypto_box($data, $Sernonce, $encKey));
-      unset($encKey);
-    } else {
-      echo "Error: Data must be String";
-    }
-  }
-
-  // Funktion um zufälligen String für "Code" zu generieren
-  function generateRandomString($length = 6) {
-    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+  // Error wenn Abreise vor anreise ist
+  if (strtotime($abreise) < strtotime($anreise)) {
+    echo "<style>.box p11 {display: inline;}</style>";
+    $error = true;
   }
 
   // Wert für Dauer/ Code definieren
   if ($dauer == "on") {
-    $code = generateRandomString();
     $dauer = 1;
   } else {
     $dauer = 0;
-    $code = NULL;
   }
 
   //encrypt data
+  $code = generateRandomString();
   $encname = encryptdata($name);
-  $encemail = encryptdata(trim($email));
-  $enctel = encryptdata(trim($tel));
+  $encemail = encryptdata($email);
+  $enctel = encryptdata($tel);
 
   // In die Datenbank einfügen
   if (!$error) {
@@ -128,12 +108,13 @@ if (isset($_GET['data'])) {
           <p3>oder:<br/></p3>
           <p4>Ich weiß noch nicht wann ich wieder gehe: </p4><input type="checkbox" id="DA" name="dauer">
           <p>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p>
-          <p5>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p5>
+          <p5>Bitte eine gültige Telefonnummer angeben<br/></p5>
           <p6>Bitte eine gültige Telefonnummer angeben<br/></p6>
           <p7>Bitte einen Namen angeben<br/></p7>
           <p8>Bitte ein Anreisedatum angeben<br/></p8>
           <p9>Bitte ein Abreisedatum angeben oder den Haken aktivieren<br/></p9>
           <p10>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht ende dich an T:@Le0nas<br/></p10>
+          <p11></br>Abreise darf nicht vor Anreise stattfinden</br></p11>
           <input type="submit" id="SA" value="Speichern">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>
