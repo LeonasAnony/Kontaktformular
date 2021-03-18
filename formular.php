@@ -4,7 +4,7 @@
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <title>Klimacamp Coronaformular</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="formular.css">
+    <link rel="stylesheet" href="style.css">
   </head>
 <?php
 $error = false;
@@ -148,16 +148,18 @@ if (isset($_GET['data'])) {
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form id="BX" action="?data=true" method="post">
-          <h1>Kontaktverfolgung</h1>
-          <p1>Daten wurden verschlüsselt gespeichert. Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code: <?php if(isset($code)){echo $code;}?> um dich<a href="https://bremen.klimacamp.eu/corona/austragen.php"> hier</a> auzutragen sobald du gehst.</p1>
+          <h1>Kontakt-</h1>
+          <h1>formular</h1>
+          <p1>Daten wurden verschlüsselt gespeichert<br/></p1>
+          <p3>Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="https://bremen.klimacamp.eu/corona/logout.php">hier</a> auzutragen sobald du gehst.</p3>
           <input type="text" id="NN" size="40" maxlength="50" name="name" placeholder="Nachname">
           <input type="email" id="EM" size="40" maxlength="250" name="email" placeholder="Email oder">
           <input type="tel" id="TL" size="40" maxlength="50" name="tel" placeholder="Telefonnummer">
           <p2>Anreise:</p2>
           <input type="date" id="AN" size="40" name="andate" placeholder="Anreise">
-          <p3>Abreise:</p3>
+          <p2>Abreise:</p2>
           <input type="date" id="AB" size="40 "name="abdate" placeholder="Abreise">
-          <p3>oder:<br/></p3>
+          <p2>oder:<br/></p2>
           <p4>Ich weiß noch nicht wann ich wieder gehe: </p4><input type="checkbox" id="DA" name="dauer">
           <p>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p>
           <p5>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p5>
