@@ -49,7 +49,7 @@ Bild von der Datenbank
 
 ### Mysql
 Running everyday:
-`DELETE FROM data WHERE Abreise <= DATE_SUB(NOW(),INTERVAL 30 DAY)`
+`DELETE FROM kontaktverfolgung_tbl WHERE Abreise <= DATE_SUB(NOW(),INTERVAL 30 DAY)`
 
 ## Kontakt
 Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
@@ -73,9 +73,9 @@ CREATE TABLE kontaktverfolgung_tbl(
     Nachname VARCHAR(250),
     Email VARCHAR(250),
     Telefonnummer VARCHAR(250),
-    Anreise DATE,
-    Abreise DATE,
-    Dauer INT,
+    Anreise DATETIME,
+    Abreise DATETIME,
+    Dauer BOOLEAN(1),
     Code VARCHAR(8),
     PRIMARY KEY ( id )
     );
