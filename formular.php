@@ -19,26 +19,18 @@ if (isset($_GET['data'])) {
   $dauer = $_POST['dauer'];
 
   // Wurde ein Name angegeben
-  if (strlen($name) == 0) {
+  if (empty(trim($name))) {
     echo "<style>.box p7 {display: inline;}</style>";
     $error = true;
   }
   // Wurde eine Email oder eine Telefonnummer angegeben
-  if ($email != null && $tel == null) {
-    $emtel = 0;
+  if (trim($email) != null) {
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<style>.box p5 {display: inline;}</style>";
         $error = true;
     }
-  } elseif ($tel != null && $email == null) {
-    $emtel = 1;
-  } elseif ($tel != null && $email != null) {
-    $emtel = 2;
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<style>.box p5 {display: inline;}</style>";
-        $error = true;
-    }
-  } else {
+  }
+  if ((trim($tel) == null && trim($email) == null)) {
     echo "<style>.box p {display: inline;}</style>";
     $error = true;
   }
@@ -104,37 +96,15 @@ if (isset($_GET['data'])) {
     $code = NULL;
   }
 
-  // Daten Verschlüsseln
-  if (!$error) {
-    $encname = encryptdata($name);
-    if ($emtel == 0) {
-      $encemail = encryptdata($email);
-    } elseif ($emtel == 1) {
-      $enctel = encryptdata($tel);
-    } elseif ($emtel == 2) {
-      $enctel = encryptdata($tel);
-      $encemail = encryptdata($email);
-    } else {
-      echo "Something went horribly wrong";
-      $error = true;
-    }
-  }
+  //encrypt data
+  $encname = encryptdata($name);
+  $encemail = encryptdata(trim($email));
+  $enctel = encryptdata(trim($tel));
 
   // In die Datenbank einfügen
   if (!$error) {
-    if ($emtel == 0) {
-      $statement = $pdo->prepare("INSERT INTO data (Nachname, Email, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :anrei, :abrei, :dauer, :code)");
-      $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
-    } elseif ($emtel == 1) {
-      $statement = $pdo->prepare("INSERT INTO data (Nachname, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :tel, :anrei, :abrei, :dauer, :code)");
-      $result = $statement->execute(array('name' => $encname, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
-    } elseif ($emtel == 2) {
-      $statement = $pdo->prepare("INSERT INTO data (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
-      $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
-    } else {
-      echo "Something went extremly wrong";
-      $error = true;
-    }
+    $statement = $pdo->prepare("INSERT INTO data (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
+    $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
     if($result) {
       echo "<style>.box p1 {display: inline;}</style>";
     } else {
