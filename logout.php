@@ -8,7 +8,9 @@
   </head>
 <?php
 $error = false;
-$pdo = new PDO('mysql:host=localhost:3306;dbname=********', '********', strval(file_get_contents("/var/www/html/keys/dbpass")));
+
+include("db.php");
+$pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if (isset($_GET['data'])) {
   $code = $_POST['code'];

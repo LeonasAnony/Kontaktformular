@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="style.css">
   </head>
 <?php
-include("db.php")
 $error = false;
+
+include("db.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if (isset($_GET['data'])) {
@@ -48,8 +49,8 @@ if (isset($_GET['data'])) {
 
   // Funktion zum laden von Schlüsseln
   function loadKeys() {
-    $ServerSecKey = base64_decode(file_get_contents("/var/www/html/keys/SSKey"));
-    $ClientPubKey = base64_decode(file_get_contents("/var/www/html/keys/CPKey"));
+    $ServerSecKey = base64_decode(file_get_contents("keys/server.priv"));
+    $ClientPubKey = base64_decode(file_get_contents("keys/user.pub"));
     return $ServerSecKey . $ClientPubKey;
   }
 
@@ -100,7 +101,7 @@ if (isset($_GET['data'])) {
 
   // In die Datenbank einfügen
   if (!$error) {
-    $statement = $pdo->prepare("INSERT INTO data (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
+    $statement = $pdo->prepare("INSERT INTO ".$tablename." (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
     $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
     if($result) {
       echo "<style>.box p1 {display: inline;}</style>";
@@ -116,7 +117,7 @@ if (isset($_GET['data'])) {
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form id="BX" action="?data=true" method="post">
           <h1>Kontaktverfolgung</h1>
-          <p1>Daten wurden verschlüsselt gespeichert. Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code: <?php if(isset($code)){echo $code;}?> um dich<a href="https://bremen.klimacamp.eu/corona/austragen.php"> hier</a> auzutragen sobald du gehst.</p1>
+          <p1>Daten wurden verschlüsselt gespeichert. Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code: <?php if(isset($code)){echo $code;}?> um dich<a href="logout.php"> hier</a> auzutragen sobald du gehst.</p1>
           <input type="text" id="NN" size="40" maxlength="50" name="name" placeholder="Nachname">
           <input type="email" id="EM" size="40" maxlength="250" name="email" placeholder="Email oder">
           <input type="tel" id="TL" size="40" maxlength="50" name="tel" placeholder="Telefonnummer">
