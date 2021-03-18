@@ -4,11 +4,12 @@
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <title>Klimacamp Coronaformular</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="formular.css">
+    <link rel="stylesheet" href="style.css">
   </head>
 <?php
+include("db.php")
 $error = false;
-$pdo = new PDO('mysql:host=localhost:3306;dbname=********', '********', strval(file_get_contents("/var/www/html/keys/dbpass")));
+$pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if (isset($_GET['data'])) {
   $name = $_POST['name'];
