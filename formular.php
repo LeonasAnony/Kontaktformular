@@ -152,15 +152,15 @@ if (isset($_GET['data'])) {
           <h1>formular</h1>
           <p1>Daten wurden verschlüsselt gespeichert<br/></p1>
           <p3>Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="https://bremen.klimacamp.eu/corona/logout.php">hier</a> auzutragen sobald du gehst.</p3>
-          <input type="text" id="NN" size="40" maxlength="50" name="name" placeholder="Nachname">
-          <input type="email" id="EM" size="40" maxlength="250" name="email" placeholder="Email oder">
-          <input type="tel" id="TL" size="40" maxlength="50" name="tel" placeholder="Telefonnummer">
+          <label for="Nachname"><input type="text" id="NN" size="40" maxlength="50" name="name" placeholder="Nachname"></label>
+          <label for="Email"><input type="email" id="EM" size="40" maxlength="250" name="email" placeholder="Email oder"></label>
+          <label for="Telefonnummer"><input type="tel" id="TL" size="40" maxlength="50" name="tel" placeholder="Telefonnummer"></label>
           <p2>Anreise:</p2>
-          <input type="date" id="AN" size="40" name="andate" placeholder="Anreise">
+          <label for="Anreise"><input type="date" id="AN" size="40" name="andate" placeholder="Anreise"></label>
           <p2>Abreise:</p2>
-          <input type="date" id="AB" size="40 "name="abdate" placeholder="Abreise">
+          <label for="Abreise"><input type="date" id="AB" size="40 "name="abdate" placeholder="Abreise"></label>
           <p2>oder:<br/></p2>
-          <p4>Ich weiß noch nicht wann ich wieder gehe: </p4><input type="checkbox" id="DA" name="dauer">
+          <p4>Ich weiß noch nicht wann ich wieder gehe: </p4><label for="Weiß noch nicht wann ich gehe"><input type="checkbox" id="DA" name="dauer"></label>
           <p>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p>
           <p5>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p5>
           <p6>Bitte eine gültige Telefonnummer angeben<br/></p6>
