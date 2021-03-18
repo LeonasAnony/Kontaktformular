@@ -44,7 +44,7 @@ body {
   margin-bottom: 0px;
 }
 .box p, p5, p6, p7, p8, p9, p10 {
-  color: red;
+  color: #FFF500;
   display: none;
 }
 .box p1, p3 {
