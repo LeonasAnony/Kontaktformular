@@ -73,14 +73,16 @@ if (isset($_GET['data'])) {
     $dauer = 0;
   }
 
-  //encrypt data
-  $code = generateRandomString();
-  $encname = encryptdata($name);
-  $encemail = encryptdata($email);
-  $enctel = encryptdata($tel);
 
   // In die Datenbank einfügen
   if (!$error) {
+
+    //encrypt data
+    $code = generateRandomString();
+    $encname = encryptdata($name);
+    $encemail = encryptdata($email);
+    $enctel = encryptdata($tel);
+
     $statement = $pdo->prepare("INSERT INTO ".$tablename." (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
     $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
     if($result) {
