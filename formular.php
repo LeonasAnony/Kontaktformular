@@ -55,7 +55,7 @@ if (isset($_GET['data'])) {
   }
 
   // Error wenn kein Abreise Datum oder Dauer angegeben/ abgehakt
-  if (($abreise == null && $dauer == null) ||  !checkIfIsAValidDate($abreise)) {
+  if (($abreise == null && $dauer == null) || !checkIfIsAValidDate($abreise)) {
     echo "<style>.box p9 {display: inline;}</style>";
     $error = true;
   }
@@ -69,6 +69,7 @@ if (isset($_GET['data'])) {
   // Wert für Dauer/ Code definieren
   if ($dauer == "on") {
     $dauer = 1;
+    echo "<style>.box p3 {display: inline;}</style>";
   } else {
     $dauer = 0;
   }
@@ -76,7 +77,6 @@ if (isset($_GET['data'])) {
 
   // In die Datenbank einfügen
   if (!$error) {
-
     //encrypt data
     $code = generateRandomString();
     $encname = encryptdata($name);
@@ -112,13 +112,13 @@ if (isset($_GET['data'])) {
           <p2>oder:<br/></p2>
           <p4>Ich weiß noch nicht wann ich wieder gehe: </p4><label for="Weiß noch nicht wann ich gehe"><input type="checkbox" name="dauer"></label>
           <p>E-Mail oder Telefonnummer muss ausgefüllt sein<br/></p>
-          <p5>Bitte eine gültige Telefonnummer angeben<br/></p5>
+          <p5>Bitte eine gültige Email angeben<br/></p5>
           <p6>Bitte eine gültige Telefonnummer angeben<br/></p6>
           <p7>Bitte einen Namen angeben<br/></p7>
           <p8>Bitte ein Anreisedatum angeben<br/></p8>
           <p9>Bitte ein Abreisedatum angeben oder den Haken aktivieren<br/></p9>
           <p10>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht ende dich an T:@Le0nas<br/></p10>
-          <p11></br>Abreise darf nicht vor Anreise stattfinden</br></p11>
+          <p11>Abreise darf nicht vor Anreise stattfinden<br/></p11>
           <input type="submit" value="Speichern">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>
