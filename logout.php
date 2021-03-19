@@ -31,7 +31,7 @@ if (isset($_GET['data'])) {
       echo "<style>.box p5 {display: inline;}</style>";
       $error = true;
     }
-    if ($exists != false and !is_null($exists[0])) {
+    if ($exists == true and !is_null($exists[0])) {
       echo "<style>.box p6 {display: inline;}</style>";
       $error = true;
     }
