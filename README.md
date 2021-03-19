@@ -48,6 +48,21 @@ Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
 Danke!
 
 ## Setup
+### General
+Als erstes musst du dieses Repo in dein Web-Verzeichnes kopieren und innerhalb des Ordners `src` den Ordner `Keys` erstellen. Das alles machst du mit den Befehlen:
+```
+git clone --branch master https://github.com/LeonasAnony/Kontaktformular.git
+cd Kontaktformular/
+mkdir src/keys
+```
+
+### Setting Permissions
+Je nachdem wie du dein Web-Verzeichnes aufbaust, musst du auch die Berechtigungen auf den Ordner ändern. Hier sind die Standard Berechtigungen(nginx):
+```
+sudo chmod -R 755 Kontaktformular/
+sudo chown -R www-data:www-data Kontaktformular/
+```
+
 ### Database
 #### create db and user
 ```
@@ -129,13 +144,6 @@ server {
                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
         }
 }
-```
-
-### Setting Permissions
-Je nachdem wie du dein Web-Verzeichnes aufbaust, musst du auch die Berechtigungen auf den Ordner ändern. Hier sind die Standard Berechtigungen(nginx):
-```
-sudo chmod -R 755 Kontaktformular/
-sudo chown -R www-data:www-data Kontaktformular/
 ```
 
 ### generate Keys

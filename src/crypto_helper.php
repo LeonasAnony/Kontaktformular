@@ -1,8 +1,8 @@
 <?php
 // Funktion zum laden von Schlüsseln
 function loadKeys() {
-  $ServerSecKey = base64_decode(file_get_contents("keys/server.priv"));
-  $ClientPubKey = base64_decode(file_get_contents("keys/user.pub"));
+  $ServerSecKey = base64_decode(file_get_contents("src/keys/server.priv"));
+  $ClientPubKey = base64_decode(file_get_contents("src/keys/user.pub"));
   return $ServerSecKey . $ClientPubKey;
 }
 

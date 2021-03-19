@@ -4,12 +4,12 @@
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <title>Klimacamp Coronaformular</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resource/style.css">
   </head>
 <?php
 $error = false;
 
-include("db.php");
+include("src/db.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if (isset($_GET['data'])) {
@@ -31,7 +31,7 @@ if (isset($_GET['data'])) {
       echo "<style>.box p5 {display: inline;}</style>";
       $error = true;
     }
-    if ($exists !== null) {
+    if ($exists != false and !is_null($exists[0])) {
       echo "<style>.box p6 {display: inline;}</style>";
       $error = true;
     }
