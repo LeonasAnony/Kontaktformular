@@ -68,7 +68,7 @@ if (isset($_GET['data'])) {
   <body>
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
-        <form id="BX" action="?data=true" method="post">
+        <form action="?data=true" method="post">
           <h1>Kontakt-</h1>
           <h1>formular</h1>
           <p1>Daten wurden verschlüsselt gespeichert, nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="logout.php">hier</a> auzutragen sobald du gehst.</p1>

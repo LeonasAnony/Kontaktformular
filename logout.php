@@ -54,15 +54,15 @@ if (isset($_GET['data'])) {
   <body>
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
-        <form id="BX" action="?data=true" method="post">
+        <form action="?data=true" method="post">
           <h1>Kontaktverfolgung</h1>
           <p1>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p1>
-          <input type="text" id="NN" size="40" maxlength="50" name="code" placeholder="Code">
+          <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code"></label>
           <p>Bitte einen richtigen Code angeben<br/></p>
           <p5>Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas<br/></p5>
           <p6>Der Code ist schon ausgetragen<br/></p6>
           <p7>etwas ist schiefgelauf, bitte probiere es erneut<br/></p7>
-          <input type="submit" id="SA" value="Austragen">
+          <input type="submit" value="Austragen">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>
       </div>
