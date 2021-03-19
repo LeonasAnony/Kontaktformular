@@ -27,12 +27,13 @@ if (isset($_GET['data'])) {
     $statement = $pdo->prepare("SELECT Abreise FROM ".$tablename." WHERE code = :code");
     $result = $statement->execute(array('code' => $code));
     $exists = $statement->fetch();
-    if ($exists == false) {
+    if ($exists == true) {
+      if (!is_null($exists[0])) {
+        echo "<style>.box p6 {display: inline;}</style>";
+        $error = true;
+      }
+    } else {
       echo "<style>.box p5 {display: inline;}</style>";
-      $error = true;
-    }
-    if ($exists == true and !is_null($exists[0])) {
-      echo "<style>.box p6 {display: inline;}</style>";
       $error = true;
     }
   }
