@@ -133,8 +133,10 @@ server {
 
 ### Setting Permissions
 Je nachdem wie du dein Web-Verzeichnes aufbaust, musst du auch die Berechtigungen auf den Ordner ändern. Hier sind die Standard Berechtigungen(nginx):
-`sudo chmod -R 755 Kontaktformular/`
-`sudo chown -R www-data:www-data Kontaktformular/`
+```
+sudo chmod -R 755 Kontaktformular/
+sudo chown -R www-data:www-data Kontaktformular/
+```
 
 ### generate Keys
 Du musst zwei Keypare generieren. Das funktioniert grundlegend wie Email per PGP.
