@@ -21,7 +21,7 @@ if (isset($_GET['data'])) {
   $email = trim($_POST['email']);
   $tel = trim($_POST['tel']);
 
-  // Error wenn kein Name angegeben wurde
+  // Error wenn kein Nachname angegeben wurde
   if ($name == null) {
     echo "<style>.box p7 {display: inline;}</style>";
     $error = true;
@@ -45,32 +45,6 @@ if (isset($_GET['data'])) {
     $error = true;
   }
 
-  // Error wenn kein Anreise Datum angegeben wurde oder das Datum nicht valide ist
-  if ($anreise == null || !checkIfIsAValidDate($anreise)) {
-    echo "<style>.box p8 {display: inline;}</style>";
-    $error = true;
-  }
-
-  // Error wenn kein Abreise Datum oder Dauer angegeben/ abgehakt
-  if (($abreise == null && $dauer == null) || !checkIfIsAValidDate($abreise)) {
-    echo "<style>.box p9 {display: inline;}</style>";
-    $error = true;
-  }
-
-  // Error wenn Abreise vor anreise ist
-  if (strtotime($abreise) < strtotime($anreise)) {
-    echo "<style>.box p11 {display: inline;}</style>";
-    $error = true;
-  }
-
-  // Wert für Dauer/ Code definieren
-  if ($dauer == "on") {
-    $dauer = 1;
-    echo "<style>.box p3 {display: inline;}</style>";
-  } else {
-    $dauer = 0;
-  }
-
 
   // In die Datenbank einfügen
   if (!$error) {
@@ -80,8 +54,8 @@ if (isset($_GET['data'])) {
     $encemail = encryptdata($email);
     $enctel = encryptdata($tel);
 
-    $statement = $pdo->prepare("INSERT INTO ".$tablename." (Nachname, Email, Telefonnummer, Anreise, Abreise, Dauer, Code) VALUES (:name, :mail, :tel, :anrei, :abrei, :dauer, :code)");
-    $result = $statement->execute(array('name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => $anreise, 'abrei' => $abreise, 'dauer' => $dauer, 'code' => $code));
+    $statement = $pdo->prepare("INSERT INTO ".$tablename." (Code, Nachname, Email, Telefonnummer, Anreise) VALUES (:code, :name, :mail, :tel, :anrei)");
+    $result = $statement->execute(array('code' => $code, 'name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => date("Y-m-d H:i:s")));
     if($result) {
       echo "<style>.box p1 {display: inline;}</style>";
     } else {
@@ -106,7 +80,7 @@ if (isset($_GET['data'])) {
           <p5>Bitte eine gültige Email angeben<br/></p5>
           <p6>Bitte eine gültige Telefonnummer angeben<br/></p6>
           <p7>Bitte einen Namen angeben<br/></p7>
-          <p10>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht ende dich an T:@Le0nas<br/></p10>
+          <p10>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an T:@Le0nas<br/></p10>
           <input type="submit" value="Speichern">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>
