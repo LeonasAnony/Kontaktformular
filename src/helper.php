@@ -1,9 +1,4 @@
 <?php
-// teste ob eingabe eine valides Datum ist
-function checkIfIsAValidDate($DateString){
-    return (bool)strtotime($DateString);
-}
-
 // teste ob eingabe eine valide Telefonnummer ist
 function checkIfIsAValidPhonenumber($TelString){
     return true;
