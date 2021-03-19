@@ -41,7 +41,7 @@ Bild von der Datenbank
 
 ### Mysql
 Running everyday:
-`DELETE FROM kontaktverfolgung_tbl WHERE Abreise <= DATE_SUB(NOW(),INTERVAL 30 DAY)`
+`DELETE FROM kontaktverfolgung_tbl WHERE Abreise != NULL AND Abreise <= DATE_SUB(NOW(),INTERVAL 30 DAY)`
 
 ## Kontakt
 Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
@@ -61,15 +61,13 @@ FLUSH PRIVILEGES;
 ```
 USE kontaktverfolgung;
 CREATE TABLE kontaktverfolgung_tbl(
-    id INT NOT NULL AUTO_INCREMENT,
+    Code VARCHAR(8),
     Nachname VARCHAR(250),
     Email VARCHAR(250),
     Telefonnummer VARCHAR(250),
     Anreise DATETIME,
     Abreise DATETIME,
-    Dauer BOOLEAN(1),
-    Code VARCHAR(8),
-    PRIMARY KEY ( id )
+    PRIMARY KEY ( Code )
     );
 ```
 
@@ -99,7 +97,7 @@ map $http_upgrade $connection_upgrade {
 server {
 ##      listen [::]:443 ssl http2 ipv6only=on;
         listen 127.0.0.1:443 ssl http2;
-        
+
         ssl_certificate /path/to/fullchain.pem;
         ssl_certificate_key /path/to/privkey.pem;
         ssl_session_cache shared:SSL:20m;
@@ -109,7 +107,7 @@ server {
         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
         ssl_protocols TLSv1.2;
         add_header Strict-Transport-Security 'max-age=31536000' always;
-        
+
 
         root YOUR-WEBFOLDER;
 
