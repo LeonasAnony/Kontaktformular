@@ -1,16 +1,11 @@
 <?php
-// teste ob eingabe eine valides Datum ist
-function checkIfIsAValidDate($myDateString){
-    return (bool)strtotime($myDateString);
-}
-
-// teste ob eingabe eine valides Datum ist
-function checkIfIsAValidPhonenumber($myDateString){
+// teste ob eingabe eine valide Telefonnummer ist
+function checkIfIsAValidPhonenumber($TelString){
     return true;
 }
 
 // Funktion um zufälligen String für "Code" zu generieren
-function generateRandomString($length = 6) {
+function generateRandomString($length = 8) {
   $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $charactersLength = strlen($characters);
   $randomString = '';
@@ -19,5 +14,4 @@ function generateRandomString($length = 6) {
   }
   return $randomString;
 }
-
 ?>

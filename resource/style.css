@@ -19,8 +19,12 @@ body {
   background: -o-linear-gradient(to bottom right, #023801, #02a000) fixed;
   background: linear-gradient(to bottom right, #023801, #02a000) fixed;
   line-height: 1.2;
+  scroll-behavior: smooth;
+  overflow: auto;
 }
 .box {
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding-top: 2rem;
   padding-bottom: 2rem;
   padding-left: 0;
@@ -37,12 +41,13 @@ body {
   color: white;
   text-transform: uppercase;
   font-weight: 500;
+  margin-bottom: 0px;
 }
 .box p, p5, p6, p7, p8, p9, p10, p11{
-  color: red;
+  color: #FFF500;
   display: none;
 }
-.box p1 {
+.box p1, p3 {
   color: #04c602;
   display: none;
 }
@@ -51,13 +56,13 @@ body {
   text-decoration: underline;
   font-weight: normal;
 }
-.box p2, p3, p4 {
+.box p2, p4 {
   color: white;
 }
 .box input[type = "text"], .box input[type = "email"], .box input[type = "tel"], .box input[type = "date"] {
   background: none;
   display: block;
-  margin: 20px auto;
+  margin: 15px auto;
   text-align: center;
   border: 2px solid #02a000;
   padding: 14px 10px;
@@ -74,7 +79,7 @@ body {
 .box input[type = "submit"] {
   background: none;
   display: block;
-  margin: 20px auto;
+  margin: 15px auto;
   text-align: center;
   border: 2px solid #04c602;
   padding: 14px 40px;

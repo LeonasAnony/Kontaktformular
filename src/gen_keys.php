@@ -21,5 +21,4 @@ if ( file_exists("{$path}{$user_public}") == false) {
 }else{
   print("files already generated");
 }
-
 ?>
