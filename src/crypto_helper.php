@@ -25,4 +25,19 @@ function encryptdata($data) {
     echo "Error: Data must be String";
   }
 }
+
+// Funktion zum Daten Entschlüsseln
+function decryptdata($encdata, $privkey) {
+  if (is_string($privkey) == true) {
+    $decKey = $privkey . $ServerPubKey;
+    $Clinonce = mb_substr($encData, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');
+    $encrypted = mb_substr($encData, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
+    $decrypted = sodium_crypto_box_open($encrypted, $Clinonce, $decKey);
+    unloadKeys();
+    return $decrypted;
+    unset($decKey, $privkey);
+  } else {
+    echo "Error: Key must be String";
+  }
+}
 ?>
