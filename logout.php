@@ -1,8 +1,14 @@
+<?php
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = ['fr', 'de', 'es', 'en'];
+$lang = in_array($lang, $acceptLang) ? $lang : 'de';
+require_once "src/locale/".$lang.".php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-    <title>Klimacamp Coronaformular</title>
+    <title><?echo $locale["header"];?></title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="resource/style.css">
   </head>
@@ -56,15 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <div class="text-break"><h1>Kontaktverfolgung</h1></div>
-          <p>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p>
-          <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code" value="<?php print($name); ?>"></label>
-          <p3>Bitte einen richtigen Code angeben<br/></p3>
-          <p4>Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas<br/></p4>
-          <p5>Der Code ist schon ausgetragen<br/></p5>
-          <p6>etwas ist schiefgelauf, bitte probiere es erneut<br/></p6>
-          <input type="submit" value="Austragen">
-          <a href="https://bremen.klimacamp.eu">Klimacamp</a>
+          <div class="text-break"><h1><?echo $locale["title"];?></h1></div>
+          <p><?echo $locale["lp"];?></p>
+          <label for="<?echo $locale["code"];?>"><input type="text" size="40" maxlength="8" name="code" placeholder="<?echo $locale["code"];?>" value="<?php print($name); ?>"></label>
+          <p3><br/><?echo $locale["lp3"];?></p3>
+          <p4><br/><?echo $locale["lp4"];?></p4>
+          <p5><br/><?echo $locale["lp5"];?></p5>
+          <p6><br/><?echo $locale["lp6"];?></p6>
+          <input type="submit" value="<?echo $locale["lsubmit"];?>">
+          <a href="https://bremen.klimacamp.eu"><?echo $locale["link"];?></a>
         </form>
       </div>
     </div>
