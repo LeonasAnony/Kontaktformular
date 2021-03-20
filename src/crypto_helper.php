@@ -3,6 +3,7 @@
 function loadKeys() {
   $ServerSecKey = base64_decode(file_get_contents("src/keys/server.priv"));
   $ClientPubKey = base64_decode(file_get_contents("src/keys/user.pub"));
+  $ServerPubKey = base64_decode(file_get_contents("src/keys/server.pub"));
   return $ServerSecKey . $ClientPubKey;
 }
 
@@ -11,6 +12,7 @@ function unloadKeys()
 {
   unset($ServerSecKey);
   unset($ClientPubKey);
+  unset($ServerPubKey);
 }
 
 // Funktion zum Daten Verschlüsseln
@@ -27,7 +29,7 @@ function encryptdata($data) {
 }
 
 // Funktion zum Daten Entschlüsseln
-function decryptdata($encdata, $privkey) {
+function decryptdata($encData, $privkey) {
   if (is_string($privkey) == true) {
     $decKey = $privkey . $ServerPubKey;
     $Clinonce = mb_substr($encData, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');

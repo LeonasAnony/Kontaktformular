@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $statement = $pdo->prepare("SELECT `Nachname`, `Email`, `Telefonnummer`, `Anreise`, `Abreise` FROM `kontaktverfolgung_tbl`");
   $statement->execute();
 
+  loadKeys();
+
   while ($encexport = $statement->fetch()) {
     fputcsv($output, decryptdata($encexport["Nachname"], $privkey));
     fputcsv($output, decryptdata($encexport["Email"], $privkey));
@@ -35,6 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     fputcsv($output, $encexport["Anreise"]);
     fputcsv($output, $encexport["Abreise"]);
   }
+
+  unloadKeys();
+  unset($privkey);
 }
 ?>
   <body>
