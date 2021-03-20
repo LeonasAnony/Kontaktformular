@@ -61,7 +61,7 @@ if (isset($_GET['data'])) {
   }
 
   // Error wenn Abreise vor anreise ist
-  if (strtotime($abreise) < strtotime($anreise)) {
+  if ($dauer == null && (strtotime($abreise) < strtotime($anreise))) {
     echo "<style>.box p11 {display: inline;}</style>";
     $error = true;
   }
@@ -102,7 +102,7 @@ if (isset($_GET['data'])) {
           <p1>Daten wurden verschlüsselt gespeichert. Daher du dich ohne Abreise Datum eingetragen hast nutze bitte diesen Code: <?php if(isset($code)){echo $code;}?> um dich<a href="logout.php"> hier</a> auzutragen sobald du gehst.</p1>
           <input type="text" id="NN" size="40" maxlength="50" name="name" placeholder="Nachname">
           <input type="email" id="EM" size="40" maxlength="250" name="email" placeholder="Email oder">
-          <input type="tel" id="TL" size="30" name="tel" placeholder="Telefonnummer" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$">
+          <input type="tel" id="TL" size="30" name="tel" placeholder="Telefonnummer" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php print($tel); ?>">
           <p2>Anreise:</p2>
           <input type="date" id="AN" size="40" name="andate" placeholder="Anreise">
           <p3>Abreise:</p3>
