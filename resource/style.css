@@ -43,21 +43,21 @@ body {
   font-weight: 500;
   margin-bottom: 0px;
 }
-.box p, p5, p6, p7, p8, p9, p10, p11{
-  color: #FFF500;
+.box p {
+  color: #04c602;
   display: none;
 }
-.box p1, p3 {
-  color: #04c602;
+.box p1, p2 {
+  color: white;
+}
+.box p3, p4, p5, p6, p7 {
+  color: #FFF500;
   display: none;
 }
 .box a {
   color: #04c602;
   text-decoration: underline;
   font-weight: normal;
-}
-.box p2, p4 {
-  color: white;
 }
 .box input[type = "text"], .box input[type = "email"], .box input[type = "tel"], .box input[type = "date"] {
   background: none;

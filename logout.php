@@ -57,12 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <div class="text-break"><h1>Kontaktverfolgung</h1></div>
-          <p1>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p1>
+          <p>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p>
           <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code" value="<?php print($name); ?>"></label>
-          <p>Bitte einen richtigen Code angeben<br/></p>
-          <p5>Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas<br/></p5>
-          <p6>Der Code ist schon ausgetragen<br/></p6>
-          <p7>etwas ist schiefgelauf, bitte probiere es erneut<br/></p7>
+          <p3>Bitte einen richtigen Code angeben<br/></p3>
+          <p4>Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas<br/></p4>
+          <p5>Der Code ist schon ausgetragen<br/></p5>
+          <p6>etwas ist schiefgelauf, bitte probiere es erneut<br/></p6>
           <input type="submit" value="Austragen">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>

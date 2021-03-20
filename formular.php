@@ -74,16 +74,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <div class="text-break"><h1>Kontaktverfolgung</h1></div>
-          <p1>Daten wurden verschlüsselt gespeichert, nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="logout.php">hier</a> auzutragen sobald du gehst.</p1>
+          <p>Daten wurden verschlüsselt gespeichert, nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="logout.php">hier</a> auzutragen sobald du gehst.</p>
           <label for="Nachname"><input type="text" size="40" maxlength="50" name="name" placeholder="Nachname" value="<?php print($name); ?>"></label>
           <label for="Email oder"><input type="email" size="40" maxlength="250" name="email" placeholder="Email oder" value="<?php print($email); ?>"></label>
           <label for="Telefonnummer"><input type="tel" size="30" name="tel" placeholder="Telefonnummer" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php print($tel); ?>"></label>
-          <p4>Ich bin mit der Verarbeitung meiner Daten zu zwecken der Kontaktverfolgung im Falle einer Infektion im Camp einverstanden: </p4><label for="Ich bin mit der Verarbbeitung meiner Daten einverstanden"><input type="checkbox" name="einverständnis" required></label>
-          <p7><br/>Bitte einen Namen angeben</p7>
-          <p><br/>E-Mail oder Telefonnummer muss ausgefüllt sein</p>
+          <p1>Ich bin mit der Verarbeitung meiner Daten zu zwecken der Kontaktverfolgung im Falle einer Infektion im Camp einverstanden: </p1><label for="Ich bin mit der Verarbbeitung meiner Daten einverstanden"><input type="checkbox" name="einverständnis" required></label>
+          <p3><br/>Bitte einen Namen angeben</p3>
+          <p4><br/>E-Mail oder Telefonnummer muss ausgefüllt sein</p4>
           <p5><br/>Bitte eine gültige Email angeben</p5>
           <p6><br/>Bitte eine gültige Telefonnummer angeben</p6>
-          <p10><br/>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an T:@Le0nas</p10>
+          <p7><br/>Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an T:@Le0nas</p7>
           <input type="submit" value="Speichern">
           <a href="https://bremen.klimacamp.eu">Klimacamp</a>
         </form>
