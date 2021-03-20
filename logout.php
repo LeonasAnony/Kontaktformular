@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <h1>Kontaktverfolgung</h1>
+          <div class="text-break"><h1>Kontaktverfolgung</h1></div>
           <p1>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p1>
           <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code" value="<?php print($name); ?>"></label>
           <p>Bitte einen richtigen Code angeben<br/></p>

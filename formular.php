@@ -14,6 +14,12 @@ include("src/crypto_helper.php");
 include("src/helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = ['fr', 'de', 'es', 'en'];
+$lang = in_array($lang, $acceptLang) ? $lang : 'de';
+require_once "src/locale/".$lang.".php";
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = trim($_POST['name']);
   $email = trim($_POST['email']);
@@ -67,11 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <h1>Kontakt-</h1>
-          <h1>formular</h1>
+          <div class="text-break"><h1>Kontaktverfolgung</h1></div>
           <p1>Daten wurden verschlüsselt gespeichert, nutze bitte diesen Code:<b> <?php if(isset($code)){echo $code;}?></b> um dich <a href="logout.php">hier</a> auzutragen sobald du gehst.</p1>
           <label for="Nachname"><input type="text" size="40" maxlength="50" name="name" placeholder="Nachname" value="<?php print($name); ?>"></label>
-          <label for="Email"><input type="email" size="40" maxlength="250" name="email" placeholder="Email oder" value="<?php print($email); ?>"></label>
+          <label for="Email oder"><input type="email" size="40" maxlength="250" name="email" placeholder="Email oder" value="<?php print($email); ?>"></label>
           <label for="Telefonnummer"><input type="tel" size="30" name="tel" placeholder="Telefonnummer" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php print($tel); ?>"></label>
           <p4>Ich bin mit der Verarbeitung meiner Daten zu zwecken der Kontaktverfolgung im Falle einer Infektion im Camp einverstanden: </p4><label for="Ich bin mit der Verarbbeitung meiner Daten einverstanden"><input type="checkbox" name="einverständnis" required></label>
           <p7><br/>Bitte einen Namen angeben</p7>
