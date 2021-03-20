@@ -8,7 +8,7 @@ require_once "src/locale/".$lang.".php";
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-    <title><?echo $locale["header"];?></title>
+    <title><?php echo $locale['header'];?></title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="resource/style.css">
   </head>
@@ -74,19 +74,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <div class="text-break"><h1><?echo $locale["title"];?></h1></div>
-          <p><?echo $locale["p"];?></p>
-          <label for="<?echo $locale["name"];?>"><input type="text" size="40" maxlength="50" name="name" placeholder="<?echo $locale["name"];?>" value="<?php echo $name; ?>"></label>
-          <label for="<?echo $locale["email"];?>"><input type="email" size="40" maxlength="250" name="email" placeholder="<?echo $locale["email"];?>" value="<?php echo $email; ?>"></label>
-          <label for="<?echo $locale["tel"];?>"><input type="tel" size="30" name="tel" placeholder="<?echo $locale["tel"];?>" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php echo $tel; ?>"></label>
-          <p1><?echo $locale["p1"];?></p1><label for="<?echo $locale["p1for"];?>"><input type="checkbox" name="einverständnis" required></label>
-          <p3><br/><?echo $locale["p3"];?></p3>
-          <p4><br/><?echo $locale["p4"];?></p4>
-          <p5><br/><?echo $locale["p5"];?></p5>
-          <p6><br/><?echo $locale["p6"];?></p6>
-          <p7><br/><?echo $locale["p7"];?></p7>
-          <input type="submit" value="<?echo $locale["submit"];?>">
-          <a href="https://bremen.klimacamp.eu"><?echo $locale["link"];?></a>
+          <div class="text-break"><h1><? echo $locale['title'];?></h1></div>
+          <p><?php echo $locale['p'];?></p>
+          <label for="<?php echo $locale['name'];?>"><input type="text" size="40" maxlength="50" name="name" placeholder="<?php echo $locale['name'];?>" value="<?php echo $name; ?>"></label>
+          <label for="<?php echo $locale['email'];?>"><input type="email" size="40" maxlength="250" name="email" placeholder="<?php echo $locale['email'];?>" value="<?php echo $email; ?>"></label>
+          <label for="<?php echo $locale['tel'];?>"><input type="tel" size="30" name="tel" placeholder="<?php echo $locale['tel'];?>" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php echo $tel; ?>"></label>
+          <p1><?php echo $locale['p1'];?></p1><label for="<?php echo $locale['p1for'];?>"><input type="checkbox" name="einverständnis" required></label>
+          <p3><br/><?php echo $locale['p3'];?></p3>
+          <p4><br/><?php echo $locale['p4'];?></p4>
+          <p5><br/><?php echo $locale['p5'];?></p5>
+          <p6><br/><?php echo $locale['p6'];?></p6>
+          <p7><br/><?php echo $locale['p7'];?></p7>
+          <input type="submit" value="<?php echo $locale['submit'];?>">
+          <a href="https://bremen.klimacamp.eu"><?php echo $locale['link'];?></a>
         </form>
       </div>
     </div>
