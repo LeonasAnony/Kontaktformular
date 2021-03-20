@@ -12,7 +12,7 @@ include("src/crypto_helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $privkey = $_POST['privkey'];
+  $privkey = base64_decode($_POST['privkey']);
 
   // output headers so that the file is downloaded rather than displayed
   header('Content-Type: text/csv; charset=utf-8');
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $statement = $pdo->prepare("SELECT `Nachname`, `Email`, `Telefonnummer`, `Anreise`, `Abreise` FROM `kontaktverfolgung_tbl`");
   $statement->execute();
 
-  loadKeys();
+  loadSPK();
 
   while ($encexport = $statement->fetch()) {
     fputcsv($output, decryptdata($encexport["Nachname"], $privkey));
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   unloadKeys();
   unset($privkey);
+  unset($GLOBALS['ServerPubKey']);
 }
 ?>
   <body>
