@@ -8,30 +8,33 @@
 $error = false;
 
 include("src/db.php");
+include("src/crypto_helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $privkey = $_POST['privkey'];
 
   // output headers so that the file is downloaded rather than displayed
-  #header('Content-Type: text/csv; charset=utf-8');
-  #header('Content-Disposition: attachment; filename=data.csv');
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename=contactlist.csv');
 
   // create a file pointer connected to the output stream
-  #$output = fopen('php://output', 'w');
+  $output = fopen('php://output', 'w');
 
   // output the column headings
-  #fputcsv($output, array('Nachname', 'E-mail', 'Telefonnummer', 'Anreise', 'Abreise'));
+  fputcsv($output, array('Nachname', 'E-mail', 'Telefonnummer', 'Anreise', 'Abreise'));
 
   // fetch the data
   $statement = $pdo->prepare("SELECT `Nachname`, `Email`, `Telefonnummer`, `Anreise`, `Abreise` FROM `kontaktverfolgung_tbl`");
   $statement->execute();
-  $encexport = $statement->fetch();
 
-  print_r($encexport);
-
-  // loop over the rows, outputting them
-  #while ($row = mysql_fetch_assoc($rows)) fputcsv($output, $row);
+  while ($encexport = $statement->fetch()) {
+    fputcsv($output, decryptdata($encexport["Nachname"], $privkey));
+    fputcsv($output, decryptdata($encexport["Email"], $privkey));
+    fputcsv($output, decryptdata($encexport["Telefonnummer"], $privkey));
+    fputcsv($output, $encexport["Anreise"]);
+    fputcsv($output, $encexport["Abreise"]);
+  }
 }
 ?>
   <body>
