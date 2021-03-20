@@ -28,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Error wenn kein Nachname angegeben wurde
   if ($name == null) {
-    echo "<style>.box p7 {display: inline;}</style>";
+    echo "<style>.box p3 {display: inline;}</style>";
     $error = true;
   }
 
   // Error wenn keine Email adresse oder Telefonnummer angegeben
   if ($tel == null && $email == null) {
-    echo "<style>.box p {display: inline;}</style>";
+    echo "<style>.box p4 {display: inline;}</style>";
     $error = true;
   }
 
@@ -62,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement = $pdo->prepare("INSERT INTO ".$tablename." (Code, Nachname, Email, Telefonnummer, Anreise) VALUES (:code, :name, :mail, :tel, :anrei)");
     $result = $statement->execute(array('code' => $code, 'name' => $encname, 'mail' => $encemail, 'tel' => $enctel, 'anrei' => date("Y-m-d H:i:s")));
     if($result) {
-      echo "<style>.box p1 {display: inline;}</style>";
+      echo "<style>.box p {display: inline;}</style>";
     } else {
-      echo "<style>.box p10 {display: inline;}</style>";
+      echo "<style>.box p7 {display: inline;}</style>";
       echo $statement->errorInfo()[2];
     }
   }

@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Kontrollieren ob der Code 8 Zeichen lang ist
   if (strlen($code) != 8) {
     // echo 'Bitte einen richtigen Code angeben<br>';
-    echo "<style>.box p {display: inline;}</style>";
+    echo "<style>.box lp3 {display: inline;}</style>";
     $error = true;
   }
 
@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $exists = $statement->fetch();
     if ($exists == true) {
       if (!is_null($exists[0])) {
-        echo "<style>.box p6 {display: inline;}</style>";
+        echo "<style>.box lp5 {display: inline;}</style>";
         $error = true;
       }
     } else {
-      echo "<style>.box p5 {display: inline;}</style>";
+      echo "<style>.box lp4 {display: inline;}</style>";
       $error = true;
     }
   }
@@ -51,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement = $pdo->prepare("UPDATE ".$tablename." SET Abreise = :abreise WHERE code = :code");
     $done = $statement->execute(array('abreise' => date("Y-m-d H:i:s"), 'code' => $code));
     if ($done == 1) {
-      echo "<style>.box p1 {display: inline;}</style>";
+      echo "<style>.box lp {display: inline;}</style>";
     } else {
-      echo "<style>.box p7 {display: inline;}</style>";
+      echo "<style>.box lp6 {display: inline;}</style>";
     }
   }
 }
