@@ -48,21 +48,6 @@ Wenn du Bugs oder Fehler findest schreib diese bitte an Telegram: @Le0nas
 Danke!
 
 ## Setup
-### General
-Als erstes musst du dieses Repo in dein Web-Verzeichnes kopieren und innerhalb des Ordners `src` den Ordner `Keys` erstellen. Das alles machst du mit den Befehlen:
-```
-git clone --branch master https://github.com/LeonasAnony/Kontaktformular.git
-cd Kontaktformular/
-mkdir src/keys
-```
-
-### Setting Permissions
-Je nachdem wie du dein Web-Verzeichnes aufbaust, musst du auch die Berechtigungen auf den Ordner ändern. Hier sind die Standard Berechtigungen(nginx):
-```
-sudo chmod -R 755 Kontaktformular/
-sudo chown -R www-data:www-data Kontaktformular/
-```
-
 ### Database
 #### create db and user
 ```
@@ -86,8 +71,30 @@ CREATE TABLE kontaktverfolgung_tbl(
     );
 ```
 
+### General
+Als erstes musst du dieses Repo in dein Web-Verzeichnes kopieren und innerhalb des Ordners `src` den Ordner `Keys` erstellen. Das alles machst du mit den Befehlen:
+```
+git clone https://github.com/LeonasAnony/Kontaktformular.git
+cd Kontaktformular/
+mkdir src/keys
+```
+
+
+### Adjust db config file
+Nachdem du die Datenbank und den Datenbank benutzer erstellt hast, muss noch die `src/db.php` angepasst werden:
+```
+nano src/db.php
+```
+
+### Setting Permissions
+Je nachdem wie du dein Web-Verzeichnes aufbaust, musst du auch die Berechtigungen auf den Ordner ändern. Hier sind die Standard Berechtigungen(nginx):
+```
+sudo chmod -R 755 Kontaktformular/
+sudo chown -R www-data:www-data Kontaktformular/
+```
+
 ### nginx config #1
-This is an example nginx server config. You have to change "YOUR-ADRESS", the path to your keys (idealy let this do Certbot), and "YOUR-WEBFOLDER" to the place where this is cloned to (for example `/var/www/html/Kontaktformular`).
+Dies ist eine nging Beispiel Konfiguration. Du musst "YOUR-ADRESS", den Path zu SSL-Schlüsseln (im besten Fall lässt du das Certbot machen) und "YOUR-WEBFOLDER" zu dem Ordner wo du das Repo hingeklont hast (zum Beispiel `/var/www/html/Kontaktformular`) ändern.
 ```
 server {
     if ($host = YOUR-ADRESS) {

@@ -12,7 +12,7 @@ $error = false;
 include("src/db.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
-if (isset($_GET['data'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $code = $_POST['code'];
 
   // Kontrollieren ob der Code 8 Zeichen lang ist
@@ -55,10 +55,10 @@ if (isset($_GET['data'])) {
   <body>
     <div class="columns">
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
-        <form action="?data=true" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <h1>Kontaktverfolgung</h1>
           <p1>Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!</p1>
-          <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code"></label>
+          <label for="Code"><input type="text" size="40" maxlength="8" name="code" placeholder="Code" value="<?php print($name); ?>"></label>
           <p>Bitte einen richtigen Code angeben<br/></p>
           <p5>Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas<br/></p5>
           <p6>Der Code ist schon ausgetragen<br/></p6>
