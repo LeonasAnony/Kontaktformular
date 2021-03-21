@@ -5,7 +5,7 @@ $locale = array(
   'name'    => 'Nachname',
   'email'   => 'Email oder',
   'tel'     => 'Telefonnummer',
-  'p'       => 'Daten wurden verschlüsselt gespeichert, nutze bitte diesen Code: <b>'.$code.'</b> um dich <a href="logout.php">hier</a> auzutragen sobald du gehst.',
+  'p'       => 'Daten wurden verschlüsselt gespeichert. Um dich <a href="logout.php">hier</a> auzutragen sobald du gehst, nutze bitte diese Code: <b>',
   'lp'      => 'Deine Kontaktdaten werden in 4 Wochen automatisch gelöscht. Danke fürs Besuchen des Klimacamps!',
   'code'    => 'Code',
   'p1'      => 'Ich bin mit der Verarbeitung meiner Daten zu zwecken der Kontaktverfolgung im Falle einer Infektion im Camp einverstanden: ',
