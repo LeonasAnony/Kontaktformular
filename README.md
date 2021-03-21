@@ -141,7 +141,7 @@ server {
                 try_files $uri $uri/ =404;
         }
 
-#        location /src {
+#        location ~ /src/.*\.*$ {
 #                deny all;
 #                return 404;
 #        }
@@ -162,14 +162,14 @@ aus der Datenbank nicht mehr entschluesseln.
 ### nginx config #2
 Nachdem du die Keys generiert hast, darf der Ordner `src` von außen nicht mehr erreichbar sein. Änder dafür:
 ```
-#        location /src {
+#        location ~ /src/.*\.*$ {
 #                deny all;
 #                return 404;
 #        }
 ```
 zu:
 ```
-        location /src {
+        location ~ /src/.*\.*$ {
                 deny all;
                 return 404;
         }
