@@ -20,7 +20,6 @@ include("src/crypto_helper.php");
 include("src/helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = trim($_POST['name']);
   $email = trim($_POST['email']);
@@ -49,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<style>.box p6 {display: inline;}</style>";
     $error = true;
   }
-
 
   // In die Datenbank einfügen
   if (!$error) {
