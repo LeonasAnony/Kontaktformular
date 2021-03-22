@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="box column col-xs-11 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-4">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <div class="text-break"><h1><? echo $locale['title'];?></h1></div>
-          <p><?php echo $locale['p'];?></p>
+          <p><?php echo $locale['p'].$code."</b>";?></p>
           <label for="<?php echo $locale['name'];?>"><input type="text" size="40" maxlength="50" name="name" placeholder="<?php echo $locale['name'];?>" value="<?php echo $name; ?>"></label>
           <label for="<?php echo $locale['email'];?>"><input type="email" size="40" maxlength="250" name="email" placeholder="<?php echo $locale['email'];?>" value="<?php echo $email; ?>"></label>
           <label for="<?php echo $locale['tel'];?>"><input type="tel" size="30" name="tel" placeholder="<?php echo $locale['tel'];?>" pattern="^(\+[0-9]{2}|[0]{2}|01)[0-9]{8,20}$" value="<?php echo $tel; ?>"></label>

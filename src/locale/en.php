@@ -5,7 +5,7 @@ $locale = array(
   'name'    => 'Last name',
   'email'   => 'E-Mail or',
   'tel'     => 'Telephone number',
-  'p'       => 'Data has been stored securely, please use this code: <b>'.$code.'</b> to sign out <a href="logout.php">here</a> as soon as you leave.',
+  'p'       => 'Data has been stored encrypted. To logout <a href="logout.php">here</a> as soon as you leave, please use this code: <b>',
   'lp'      => 'Your contact details will be automatically deleted in 4 weeks. Thank you for visiting the Climate Camp!',
   'code'    => 'Code',
   'p1'      => 'I agree with the processing of my data for the purpose of contact tracing in case of an infection in the camp: ',

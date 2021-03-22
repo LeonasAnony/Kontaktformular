@@ -141,9 +141,9 @@ server {
                 try_files $uri $uri/ =404;
         }
 
-        location /keys {
+        location ~ /src/.*\.*$ {
                 deny all;
-                return 403;
+                return 404;
         }
 
         location ~ \.php$ {
@@ -158,5 +158,3 @@ Du musst zwei Keypare generieren. Das funktioniert grundlegend wie Email per PGP
 Dazu musst du einmal die `src/gen_key.php` aufrufen. Dabei wird dir dein private Key
 angezeigt. Den musst du unbedint aufschreiben. Ohne den kanns du die Daten
 aus der Datenbank nicht mehr entschluesseln.
-
-
