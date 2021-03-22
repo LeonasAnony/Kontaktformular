@@ -1,13 +1,17 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT']."/src/crypto_conf.php");
+
 // Funktion zum laden von Schlüsseln
 function loadKeys() {
-  $ServerSecKey = base64_decode(file_get_contents("src/keys/server.priv"));
-  $ClientPubKey = base64_decode(file_get_contents("src/keys/user.pub"));
+  global $keyfolder_path, $server_priv, $user_public;
+  $ServerSecKey = base64_decode(file_get_contents("{$keyfolder_path}/{$server_priv}"));
+  $ClientPubKey = base64_decode(file_get_contents("{$keyfolder_path}/{$user_public}"));
   return $ServerSecKey . $ClientPubKey;
 }
 
 function loadSPK() {
-  $ServerPubKey = base64_decode(file_get_contents("keys/server.pub"));
+  global $keyfolder_path, $server_public;
+  $ServerPubKey = base64_decode(file_get_contents("{$keyfolder_path}/{$server_public}"));
   $GLOBALS['ServerPubKey'] = $ServerPubKey;
 }
 
@@ -36,6 +40,7 @@ function encryptdata($data) {
 // Funktion zum Daten Entschlüsseln
 function decryptdata($encData, $privkey) {
   if (is_string($privkey) == true) {
+    loadSPK();
     $decKey = $privkey . $GLOBALS['ServerPubKey'];
     $Clinonce = mb_substr(base64_decode($encData), 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');
     $encrypted = mb_substr(base64_decode($encData), SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
