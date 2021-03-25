@@ -1,5 +1,25 @@
 <?php
+// HSTS aktivieren
 header("Strict-Transport-Security:max-age=31536000; includeSubdomains");
+// Sicherstellen das die Seite über HTTPS aufgerufen wird
+function isSSL(){
+  if($_SERVER['https'] == 1) /* Apache */ {
+    return TRUE;
+  } elseif ($_SERVER['https'] == 'on') /* IIS */ {
+    return TRUE;
+  } elseif ($_SERVER['SERVER_PORT'] == 443) /* others */ {
+    return TRUE;
+  } elseif (!empty($_SERVER['HTTPS'])) {
+    return TRUE;
+  } else {
+    return FALSE; /* just using http */
+  }
+}
+if (!isSSL()) {
+  header('location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+  exit();
+}
+// Richtige Sprache laden
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 $acceptLang = ['fr', 'de', 'es', 'en'];
 $lang = in_array($lang, $acceptLang) ? $lang : 'de';
