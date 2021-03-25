@@ -141,10 +141,10 @@ server {
                 try_files $uri $uri/ =404;
         }
 
-#        location ~ /src/.*\.*$ {
-#                deny all;
-#                return 404;
-#        }
+        location /keys {
+                deny all;
+                return 403;
+        }
 
         location ~ \.php$ {
                 include snippets/fastcgi-php.conf;
@@ -159,18 +159,4 @@ Dazu musst du einmal die `src/gen_key.php` aufrufen. Dabei wird dir dein private
 angezeigt. Den musst du unbedint aufschreiben. Ohne den kanns du die Daten
 aus der Datenbank nicht mehr entschluesseln.
 
-### nginx config #2
-Nachdem du die Keys generiert hast, darf der Ordner `src` von außen nicht mehr erreichbar sein. Änder dafür:
-```
-#        location ~ /src/.*\.*$ {
-#                deny all;
-#                return 404;
-#        }
-```
-zu:
-```
-        location ~ /src/.*\.*$ {
-                deny all;
-                return 404;
-        }
-```
+

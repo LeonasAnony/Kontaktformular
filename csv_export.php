@@ -1,6 +1,6 @@
 <?php
-include("db.php");
-include("crypto_helper.php");
+include("src/db.php");
+include("src/crypto_helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
