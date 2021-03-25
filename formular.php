@@ -1,7 +1,10 @@
 <?php
+header("Strict-Transport-Security:max-age=31536000; includeSubdomains");
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 $acceptLang = ['fr', 'de', 'es', 'en'];
 $lang = in_array($lang, $acceptLang) ? $lang : 'de';
+$overwrite = $_GET['lang'];
+$lang = $overwrite ?? $lang;
 require_once "src/locale/".$lang.".php";
 ?>
 <!DOCTYPE html>
