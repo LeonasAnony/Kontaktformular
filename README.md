@@ -81,9 +81,9 @@ mkdir src/keys
 
 
 ### Adjust db config file
-Nachdem du die Datenbank und den Datenbank benutzer erstellt hast, muss noch die `src/db.php` angepasst werden:
+Nachdem du die Datenbank und den Datenbank benutzer erstellt hast, muss noch die `src/config.php` angepasst werden:
 ```
-nano src/db.php
+nano src/config.php
 ```
 
 ### Setting Permissions

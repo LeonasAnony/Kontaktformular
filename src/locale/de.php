@@ -19,6 +19,7 @@ $locale = array(
   'p6'      => 'Bitte eine gültige Telefonnummer angeben',
   'lp6'     => 'etwas ist schiefgelauf, bitte probiere es erneut',
   'p7'      => 'Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an T:@Le0nas',
+  'p8'      => 'Du bist ein Roboter';
   'submit'  => 'Speichern',
   'lsubmit' => 'Austragen',
   'link'    => 'Klimacamp'
