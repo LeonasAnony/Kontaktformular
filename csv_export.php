@@ -19,7 +19,7 @@ if (!isSSL()) {
   header('location: https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
   exit();
 }
-include("src/db.php");
+include("src/config.php");
 include("src/crypto_helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 

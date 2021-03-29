@@ -33,12 +33,13 @@ require_once "src/locale/".$lang.".php";
     <meta charset="utf-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <title><?php echo $locale['header'];?></title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
     <link rel="stylesheet" href="resource/style.css">
   </head>
 <?php
 $error = false;
 
-include("src/db.php");
+include("src/config.php");
 include("src/crypto_helper.php");
 include("src/helper.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
@@ -48,6 +49,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = trim($_POST['name']);
   $email = trim($_POST['email']);
   $tel = trim($_POST['tel']);
+  $data = array(
+    'secret' => $HCsecret_key,
+    'response' => $_POST['h-captcha-response'],
+    'sitekey' => $HCsite_key
+  );
+
+  $verify = curl_init();
+  curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+  curl_setopt($verify, CURLOPT_POST, true);
+  curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+  $response = curl_exec($verify);
+  // var_dump($response);
+
+  $responseData = json_decode($response);
+  if(!$responseData->success) {
+    echo "<style>.box p8 {display: inline;}</style>";
+    $error = true;
+  }
 
   // Error wenn kein Nachname angegeben wurde
   if ($name == null) {
@@ -108,6 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <p5><br/><?php echo $locale['p5'];?></p5>
           <p6><br/><?php echo $locale['p6'];?></p6>
           <p7><br/><?php echo $locale['p7'];?></p7>
+          <br/><div class="h-captcha" data-sitekey="<?php echo $HCsite_key;?>" data-theme="dark"></div>
+          <p8><br/><?php echo $locale['p8'];?></p8>
           <input type="submit" value="<?php echo $locale['submit'];?>">
           <a href="https://bremen.klimacamp.eu"><?php echo $locale['link'];?></a>
         </form>

@@ -38,7 +38,7 @@ require_once "src/locale/".$lang.".php";
 <?php
 $error = false;
 
-include("src/db.php");
+include("src/config.php");
 $pdo = new PDO('mysql:host='.$host.':'.$port.';dbname='.$dbname, $dbuser, $dbpw);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

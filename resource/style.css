@@ -50,7 +50,7 @@ body {
 .box p1, p2 {
   color: white;
 }
-.box p3, p4, p5, p6, p7 {
+.box p3, p4, p5, p6, p7, p8 {
   color: #FFF500;
   display: none;
 }
@@ -91,4 +91,7 @@ body {
 }
 .box input[type = "submit"]:hover {
   background: #04c602;
+}
+.h-captcha {
+  margin-top: 10px;
 }
