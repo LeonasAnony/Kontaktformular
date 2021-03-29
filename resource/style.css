@@ -92,3 +92,6 @@ body {
 .box input[type = "submit"]:hover {
   background: #04c602;
 }
+.h-captcha {
+  margin-top: 10px;
+}
