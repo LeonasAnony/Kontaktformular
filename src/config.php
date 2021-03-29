@@ -10,5 +10,5 @@ $dbpw = 'asdf';
 
 ### hCaptcha Config
 $HCsite_key = "your-site-key";
-$HCsecret_key = "your-hcaptcha-secret-key"
+$HCsecret_key = "your-hcaptcha-secret-key";
 ?>
