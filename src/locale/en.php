@@ -2,7 +2,7 @@
 $locale = array(
   'header'  => 'Climate Camp Corona form',
   'title'   => 'Contact tracing',
-  'name'    => 'Last name',
+  'name'    => 'Name',
   'email'   => 'E-Mail or',
   'tel'     => 'Telephone number',
   'p'       => 'Data has been stored encrypted. To logout <a href="logout.php">here</a> as soon as you leave, please use this code: <b>',
