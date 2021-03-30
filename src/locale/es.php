@@ -2,7 +2,7 @@
 $locale = array(
   'header'  => 'Klimacamp Coronaformular',
   'title'   => 'Kontaktverfolgung',
-  'name'    => 'Nachname',
+  'name'    => 'Name',
   'email'   => 'Email oder',
   'tel'     => 'Telefonnummer',
   'p'       => 'Daten wurden verschlüsselt gespeichert. Um dich <a href="logout.php">hier</a> auzutragen sobald du gehst, nutze bitte diese Code: <b>',
