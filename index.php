@@ -131,7 +131,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <br/><div class="h-captcha" data-sitekey="<?php echo $HCsite_key;?>" data-theme="dark"></div>
           <p8><br/><?php echo $locale['p8'];?></p8>
           <input type="submit" value="<?php echo $locale['submit'];?>">
-          <a href="https://bremen.klimacamp.eu"><?php echo $locale['link'];?></a>
+          <a href="<?php echo $locale['url'];?>"><?php echo $locale['link'];?></a>
+          <a href="<?php echo $locale['faq_url'];?>"><?php echo $locale['faq'];?></a>
+          <a href="<?php echo $locale['consent_url'];?>"><?php echo $locale['consent'];?></a>
         </form>
       </div>
     </div>
