@@ -13,15 +13,20 @@ $locale = array(
   'p3'      => 'Bitte einen Namen angeben',
   'lp3'     => 'Bitte einen richtigen Code angeben',
   'p4'      => 'E-Mail oder Telefonnummer muss ausgefüllt sein',
-  'lp4'     => 'Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an T:@Le0nas',
+  'lp4'     => 'Dein Code ist nicht in der Datenbank, gib bitte den Code vom Eintragen an, oder wende dich an ########',
   'p5'      => 'Bitte eine gültige Email angeben',
   'lp5'     => 'Der Code ist schon ausgetragen',
   'p6'      => 'Bitte eine gültige Telefonnummer angeben',
   'lp6'     => 'etwas ist schiefgelauf, bitte probiere es erneut',
-  'p7'      => 'Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an T:@Le0nas',
+  'p7'      => 'Beim Abspecheichern ist ein Fehler aufgetreten. Bitte versuche es erneut. Wenn das Problem weiterhin besteht wende dich an ########',
   'p8'      => 'Du bist ein Roboter',
   'submit'  => 'Speichern',
   'lsubmit' => 'Austragen',
-  'link'    => 'Klimacamp'
+  'url'     => 'https://klimacamp-bremen.de',
+  'link'    => 'Klimacamp',
+  'faq_url' => '########',
+  'faq'     => 'Kurzerklärung',
+  'consent_url' => '########',
+  'consent' => 'Einverständniserklärung'
 );
 ?>

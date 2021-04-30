@@ -22,6 +22,11 @@ $locale = array(
   'p8'      => 'You are a robot',
   'submit'  => 'Save',
   'lsubmit' => 'Sign out',
-  'link'    => 'Climate Camp'
+  'url'     => 'https://klimacamp-bremen.de',
+  'link'    => 'Climate Camp',
+  'faq_url' => '########',
+  'faq'     => 'Short explanation',
+  'consent_url' => '########',
+  'consent' => 'Declaration of consent'
 );
 ?>
